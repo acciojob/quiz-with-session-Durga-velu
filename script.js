@@ -3,11 +3,45 @@
 let btn=document.getElementById("submit");
 let questionsElement=document.getElementById("questions");
 
-let storeAns=JSON.parse(localStorage.getItem("progress"))
+const userAnswers = JSON.parse(sessionStorage.getItem("progress")) || {}
 
 
+for(let i=0;i<questions.length;i++){
+	const choices=document.getElementsByName(`question-${i}`);
+
+	choices.forEach(choice=>{
+		choice.addEventListener("change",()=>{
+			userAnswers[i] = this.value;
+			      sessionStorage.setItem("progress", JSON.stringify(userAnswers));
+		})
+	})
+	
+}
+
+window.onload = function() {
+  for (let i = 0; i < questions.length; i++) {
+    const choices = document.getElementsByName(`question-${i}`);
+    if (userAnswers[i]) {
+      choices.forEach(choice => {
+        if (choice.value === userAnswers[i]) {
+          choice.checked = true;
+        }
+      });
+    }
+  }
+};
 
 
+btn.addEventListener('click', function() {
+  let score = 0;
+  for (let i = 0; i < questions.length; i++) {
+    if (userAnswers[i] === questions[i].answer) {
+      score++;
+    }
+  }
+  alert(`Your score is ${score} out of ${questions.length}.`);
+  localStorage.setItem("score", score);
+});
 
 
 // Do not change code below this line
