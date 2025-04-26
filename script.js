@@ -7,9 +7,7 @@ const userAnswers = JSON.parse(sessionStorage.getItem("progress")) || {}
 
 
 
-window.onload = function() {
-  renderQuestions()
-};
+
 
 
 btn.addEventListener('click', function() {
