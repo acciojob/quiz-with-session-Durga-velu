@@ -18,7 +18,7 @@ btn.addEventListener('click', function() {
   alert(`Your score is ${score} out of ${questions.length}.`);
   localStorage.setItem("score", score);
 
-document.getElementById("score").innerHTML=score
+document.getElementById("score").innerHTML=`Your score is ${score} out of ${questions.length}.`
 	
 });
 
