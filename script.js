@@ -6,29 +6,9 @@ let questionsElement=document.getElementById("questions");
 const userAnswers = JSON.parse(sessionStorage.getItem("progress")) || {}
 
 
-for(let i=0;i<questions.length;i++){
-	const choices=document.getElementsByName(`question-${i}`);
-
-	choices.forEach(choice=>{
-		choice.addEventListener("change",()=>{
-			userAnswers[i] = this.value;
-			      sessionStorage.setItem("progress", JSON.stringify(userAnswers));
-		})
-	})
-	
-}
 
 window.onload = function() {
-  for (let i = 0; i < questions.length; i++) {
-    const choices = document.getElementsByName(`question-${i}`);
-    if (userAnswers[i]) {
-      choices.forEach(choice => {
-        if (choice.value === userAnswers[i]) {
-          choice.checked = true;
-        }
-      });
-    }
-  }
+  renderQuestions()
 };
 
 
@@ -90,6 +70,11 @@ function renderQuestions() {
       if (userAnswers[i] === choice) {
         choiceElement.setAttribute("checked", true);
       }
+  choiceElement.addEventListener("change", () => {
+        userAnswers[i] = choice;
+        sessionStorage.setItem("progress", JSON.stringify(userAnswers));
+      });
+		
       const choiceText = document.createTextNode(choice);
       questionElement.appendChild(choiceElement);
       questionElement.appendChild(choiceText);
