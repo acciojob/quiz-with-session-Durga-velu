@@ -1,5 +1,15 @@
 //your JS code here.
 
+let btn=document.getElementById("submit");
+let questionsElement=document.getElementById("questions");
+
+let storeAns=JSON.parse(localStorage.getItem("progress"))
+
+
+
+
+
+
 // Do not change code below this line
 // This code will just display the questions to the screen
 const questions = [
