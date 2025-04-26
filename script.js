@@ -2,7 +2,7 @@
 
 let btn=document.getElementById("submit");
 let questionsElement=document.getElementById("questions");
-
+let score=document.getElementById("score");
 const userAnswers = JSON.parse(sessionStorage.getItem("progress")) || {}
 
 
@@ -14,8 +14,10 @@ btn.addEventListener('click', function() {
       score++;
     }
   }
+	score.textContent=score;
   alert(`Your score is ${score} out of ${questions.length}.`);
   localStorage.setItem("score", score);
+	
 });
 
 
